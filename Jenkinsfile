@@ -29,13 +29,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "scp -i c:/bwprogramme/jenkinstutorial/bw-maven-project/part2/tomcat-demo2.pem 'c:/Program Files (x86)/Jenkins/workspace/FullyAutomated/webapp/target/webapp.war' ec2-user@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
+                        sh "cp 'c:/Program Files (x86)/Jenkins/workspace/FullyAutomated/webapp/target/webapp.war' c:/bwprogramme/apache-tomcat-8.5.39/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "scp -i c:/bwprogramme/jenkinstutorial/bw-maven-project/part2/tomcat-demo2.pem 'c:/Program Files (x86)/Jenkins/workspace/FullyAutomated/webapp/target/webapp.war' ec2-user@${params.tomcat_prod}:/var/lib/tomcat8/webapps"
+                        sh "cp 'c:/Program Files (x86)/Jenkins/workspace/FullyAutomated/webapp/target/webapp.war' c:/bwprogramme/apache-tomcat-8.5.39-prod/webapps"
                     }
                 }
             }
